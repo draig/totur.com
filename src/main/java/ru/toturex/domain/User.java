@@ -7,25 +7,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TUTORS")
-public class Tutor {
+@Table(name = "users")
+public class User {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "firstname")
     private String firstname;
 
-    @Column(name = "LASTNAME")
-    private String lastname;
+    @Column(name = "surname")
+    private String surname;
 
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "TELEPHONE")
+    @Column(name = "telephone")
     private String telephone;
+
+    @Column(name = "type")
+    private String type;
 
     public Integer getId() {
         return id;
@@ -43,12 +46,12 @@ public class Tutor {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
