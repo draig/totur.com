@@ -1,4 +1,4 @@
-package ru.toturex.service;
+package ru.toturex.service.impl;
 
 import ru.toturex.dao.UserDAO;
 import ru.toturex.domain.User;
@@ -7,6 +7,7 @@ import ru.toturex.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.toturex.service.UserService;
 
 import java.util.List;
 

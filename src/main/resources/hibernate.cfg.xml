@@ -5,6 +5,7 @@
 
 <hibernate-configuration>
 	<session-factory>
+        <property name="hibernate.hbm2ddl.auto">create</property><!-- update create-->
 		<mapping class="ru.toturex.domain.Course" />
         <mapping class="ru.toturex.domain.User" />
 	</session-factory>

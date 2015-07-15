@@ -11,61 +11,52 @@
 </head>
 <body>
 
+Hello world !!!
 <a href="<c:url value="/logout" />">
 	<spring:message code="label.logout" />
 </a>
   
 <h2><spring:message code="label.title" /></h2>
 
-<form:form method="post" action="add" commandName="contact">
+<form:form method="post" action="add" commandName="course">
 
 	<table>
 		<tr>
-			<td><form:label path="firstname">
-				<spring:message code="label.firstname" />
+			<td><form:label path="category">
+				<spring:message code="label.category" />
 			</form:label></td>
-			<td><form:input path="firstname" /></td>
+			<td><form:input path="category" /></td>
 		</tr>
 		<tr>
-			<td><form:label path="lastname">
-				<spring:message code="label.lastname" />
+			<td><form:label path="subject">
+				<spring:message code="label.subject" />
 			</form:label></td>
-			<td><form:input path="lastname" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="email">
-				<spring:message code="label.email" />
-			</form:label></td>
-			<td><form:input path="email" /></td>
-		</tr>
-		<tr>
-			<td><form:label path="telephone">
-				<spring:message code="label.telephone" />
-			</form:label></td>
-			<td><form:input path="telephone" /></td>
+			<td><form:input path="subject" /></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit"
-				value="<spring:message code="label.addcontact"/>" /></td>
+				value="<spring:message code="label.addcourse"/>" /></td>
 		</tr>
 	</table>
 </form:form>
 
-<h3><spring:message code="label.contacts" /></h3>
-<c:if test="${!empty contactList}">
+<h3><spring:message code="label.courses" /></h3>
+<c:if test="${!empty courseList}">
 	<table class="data">
 		<tr>
-			<th><spring:message code="label.firstname" /></th>
-			<th><spring:message code="label.email" /></th>
-			<th><spring:message code="label.telephone" /></th>
+            <th>id</th>
+			<th><spring:message code="label.category" /></th>
+			<th><spring:message code="label.subject" /></th>
+			<th>tutorId</th>
 			<th>&nbsp;</th>
 		</tr>
-		<c:forEach items="${contactList}" var="contact">
+		<c:forEach items="${courseList}" var="course">
 			<tr>
-				<td>${contact.lastname}, ${contact.firstname}</td>
-				<td>${contact.email}</td>
-				<td>${contact.telephone}</td>
-				<td><a href="delete/${contact.id}"><spring:message code="label.delete" /></a></td>
+                <td>${course.id}</td>
+				<td>${course.category}</td>
+				<td>${course.subject}</td>
+				<td>${course.tutorId}</td>
+				<td><a href="delete/${course.id}"><spring:message code="label.delete" /></a></td>
 			</tr>
 		</c:forEach>
 	</table>

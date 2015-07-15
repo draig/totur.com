@@ -3,7 +3,7 @@ package ru.toturex.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "courses")
 public class Course {
 
     @Id

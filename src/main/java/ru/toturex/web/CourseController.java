@@ -35,8 +35,8 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCourse(@ModelAttribute("course") Course contact, BindingResult result) {
-        courseService.addCourse(contact);
+    public String addCourse(@ModelAttribute("course") Course course, BindingResult result) {
+        courseService.addCourse(course);
         return "redirect:/index";
     }
 

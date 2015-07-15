@@ -21,7 +21,7 @@ public class CourseDAOImpl implements CourseDAO {
 
     @SuppressWarnings("unchecked")
     public List<Course> listCourse() {
-        return sessionFactory.getCurrentSession().createQuery("from courses")
+        return sessionFactory.getCurrentSession().createQuery("from Course")
                 .list();
     }
 
