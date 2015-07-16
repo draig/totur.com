@@ -1,14 +1,15 @@
 package ru.toturex.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(name = "id")
@@ -29,6 +30,19 @@ public class User {
 
     @Column(name = "type")
     private String type;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    public Role getGrantedAuthority()
+    {
+        return this.grantedAuthority;
+    }
 
     public Integer getId() {
         return id;
@@ -68,5 +82,43 @@ public class User {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        Collection<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+        Collections.addAll(auth, user.getGrantedAuthority());
+        return auth;
+    }
+
+    @Override
+    public String getUsername() {
+        return auser.getUsername() ;
+    }
+
+    @Override
+    public String getPassword() {
+        return auser.getPassword();
     }
 }
