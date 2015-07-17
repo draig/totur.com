@@ -8,5 +8,6 @@
         <property name="hibernate.hbm2ddl.auto">create</property><!-- update create-->
 		<mapping class="ru.toturex.domain.Course" />
         <mapping class="ru.toturex.domain.User" />
+        <mapping class="ru.toturex.domain.UserRole" />
 	</session-factory>
 </hibernate-configuration>

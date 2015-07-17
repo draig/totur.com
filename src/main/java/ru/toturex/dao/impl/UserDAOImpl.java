@@ -3,6 +3,7 @@ package ru.toturex.dao.impl;
 import ru.toturex.dao.UserDAO;
 import ru.toturex.domain.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -31,6 +32,21 @@ public class UserDAOImpl implements UserDAO {
                 User.class, id);
         if (null != user) {
             sessionFactory.getCurrentSession().delete(user);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public User findByUserName(String username) {
+
+        List<User> users = sessionFactory.getCurrentSession()
+                .createQuery("from User where username=?")
+                .setParameter(0, username)
+                .list();
+
+        if (users.size() > 0) {
+            return users.get(0);
+        } else {
+            return null;
         }
     }
 }

@@ -1,18 +1,14 @@
 package ru.toturex.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     @GeneratedValue
     private Integer id;
 
@@ -31,17 +27,30 @@ public class User implements UserDetails {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    public Role getGrantedAuthority()
-    {
-        return this.grantedAuthority;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
+
+    public User() {
+    }
+
+    public User(String username, String password, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Integer getId() {
@@ -84,41 +93,33 @@ public class User implements UserDetails {
         this.telephone = telephone;
     }
 
-    @Override
     public boolean isEnabled() {
         return true;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
 
-    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities()
-    {
-        Collection<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-        Collections.addAll(auth, user.getGrantedAuthority());
-        return auth;
-    }
-
-    @Override
     public String getUsername() {
-        return auser.getUsername() ;
+        return this.username;
     }
 
-    @Override
     public String getPassword() {
-        return auser.getPassword();
+        return this.password;
     }
+
+    public Set<UserRole> getUserRole() {
+        return this.userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userUserRole) {
+        this.userRole = userUserRole;
+    }
+
 }
