@@ -1,0 +1,47 @@
+package ru.toturex.web;
+
+import org.springframework.ui.Model;
+import ru.toturex.domain.Course;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import ru.toturex.domain.User;
+import ru.toturex.service.CourseService;
+import ru.toturex.service.UserService;
+import ru.toturex.service.user.NewUserValidatorService;
+
+import java.util.Map;
+
+
+@Controller
+public class SignController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private NewUserValidatorService userValidator;
+
+    @RequestMapping(value = "/join", method = RequestMethod.GET)
+    public String join ( Model model ) {
+        model.addAttribute ("user" , new User() ) ;
+        return "join";
+    }
+
+    @RequestMapping(value = "/join", method = RequestMethod.POST)
+    public String join (@ModelAttribute("user")  User user, BindingResult result) {
+        userValidator.validate(user, result);
+        if (result.hasErrors()) {
+            return "join" ;
+        }
+        userService.addUser(user);
+
+        return "redirect:/index";
+    }
+
+}

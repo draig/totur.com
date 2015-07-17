@@ -30,6 +30,7 @@ public class ToturexUserDetailsService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("");
         }
+
         List<GrantedAuthority> authorities =
                 buildUserAuthority(user.getUserRole());
 
