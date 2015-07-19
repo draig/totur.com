@@ -18,9 +18,9 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	</http>
 
 	<authentication-manager>
-        <authentication-provider user-service-ref="userDetailsService" >
-            <password-encoder hash="md5" />
-        </authentication-provider>
+        <authentication-provider user-service-ref="userDetailsService" ></authentication-provider>
 	</authentication-manager>
+
+
 
 </beans:beans>

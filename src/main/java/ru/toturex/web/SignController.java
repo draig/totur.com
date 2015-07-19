@@ -1,5 +1,6 @@
 package ru.toturex.web;
 
+import com.sun.javafx.collections.UnmodifiableListSet;
 import org.springframework.ui.Model;
 import ru.toturex.domain.Course;
 
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.toturex.domain.RegData;
 import ru.toturex.domain.User;
+import ru.toturex.domain.UserRole;
 import ru.toturex.service.CourseService;
 import ru.toturex.service.UserService;
 import ru.toturex.service.user.NewUserValidatorService;
@@ -29,16 +32,19 @@ public class SignController {
 
     @RequestMapping(value = "/join", method = RequestMethod.GET)
     public String join ( Model model ) {
-        model.addAttribute ("user" , new User() ) ;
+        model.addAttribute ("regData" , new RegData() ) ;
         return "join";
     }
 
     @RequestMapping(value = "/join", method = RequestMethod.POST)
-    public String join (@ModelAttribute("user")  User user, BindingResult result) {
+    public String join (@ModelAttribute("regData")  RegData redData, BindingResult result) {
+        User user = redData.getUser();
         userValidator.validate(user, result);
         if (result.hasErrors()) {
             return "join" ;
         }
+        String auth = redData.getAuth();
+        user.addUserRole(auth != null ? auth : "ROLE_ADMIN");
         userService.addUser(user);
 
         return "redirect:/index";

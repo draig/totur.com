@@ -3,6 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,10 +12,22 @@
 </head>
 <body>
 
-<a href="<c:url value="/logout" />">
-	<spring:message code="label.logout" />
-</a>
-  
+<sec:authorize access="isAuthenticated()">
+    <a href="<c:url value="/logout" />">
+        <spring:message code="label.logout" />
+    </a>
+</sec:authorize>
+
+<sec:authorize access="!isAuthenticated()">
+    <a href="<c:url value="/join" />">
+        <spring:message code="label.registrate" />
+    </a>
+    or
+    <a href="<c:url value="/login.jsp" />">
+        <spring:message code="label.login" />
+    </a>
+</sec:authorize>
+
 <h2><spring:message code="label.title" /></h2>
 
 <form:form method="post" action="add" commandName="course">

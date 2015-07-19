@@ -19,7 +19,7 @@ public class User {
     private String surname;
 
     @Column(name = "email")
-    private String email;
+    private String email = "";
 
     @Column(name = "telephone")
     private String telephone;
@@ -28,10 +28,10 @@ public class User {
     private String type;
 
     @Column(name = "username", unique = true, nullable = false)
-    private String username;
+    private String username = "";
 
     @Column(name = "password")
-    private String password;
+    private String password = "";
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
@@ -110,16 +110,29 @@ public class User {
         return this.username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<UserRole> getUserRole() {
         return this.userRole;
     }
 
-    public void setUserRole(Set<UserRole> userUserRole) {
-        this.userRole = userUserRole;
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
+    }
+
+    public void addUserRole(String authority) {
+        UserRole newUserRole = new UserRole(this, authority);
+        this.userRole.add(newUserRole);
     }
 
 }

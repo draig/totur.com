@@ -27,5 +27,6 @@
 				
 	<!-- Файл с настройками безопасности -->
 	<import resource="security.xml" />
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
 
 </beans>

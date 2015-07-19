@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.toturex.domain.UserRole;
 
 
 @Repository
@@ -19,11 +20,14 @@ public class UserDAOImpl implements UserDAO {
 
     public void addUser(User tutor) {
         sessionFactory.getCurrentSession().save(tutor);
+        for(UserRole userRole : tutor.getUserRole()){
+            sessionFactory.getCurrentSession().save(userRole);
+        }
     }
 
     @SuppressWarnings("unchecked")
     public List<User> listUser() {
-        return sessionFactory.getCurrentSession().createQuery("from users")
+        return sessionFactory.getCurrentSession().createQuery("from User")
                 .list();
     }
 
