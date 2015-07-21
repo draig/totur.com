@@ -1,0 +1,1 @@
+TotuRex.data = TotuRex.data || {};

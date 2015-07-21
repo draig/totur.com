@@ -29,6 +29,16 @@ public class CourseController {
         return "contact";
     }
 
+    @RequestMapping("/newcourse")
+    public String newCourse(Map<String, Object> map) {
+
+        map.put("course", new Course());
+        map.put("categories", Course.CATEGORIES.keySet());
+        map.put("categoriesWithSubjects", Course.CATEGORIES);
+
+        return "newcourse";
+    }
+
     @RequestMapping("/")
     public String home() {
         return "redirect:/index";
@@ -36,7 +46,7 @@ public class CourseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCourse(@ModelAttribute("course") Course course, BindingResult result) {
-        courseService.addCourse(course);
+        courseService.addCourseWithCurrentUser(course);
         return "redirect:/index";
     }
 

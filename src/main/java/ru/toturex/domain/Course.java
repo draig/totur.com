@@ -1,18 +1,32 @@
 package ru.toturex.domain;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "courses")
 public class Course {
+
+    public static final Map <String, String []> CATEGORIES;
+
+    static
+    {
+        CATEGORIES = new HashMap <String, String []>();
+        String [] school = {"biology", "chemistry", "english", "geography", "math"};
+        CATEGORIES.put("school", school);
+        String [] exams = {"math", "history", "physics"};
+        CATEGORIES.put("exams", exams);
+    }
 
     @Id
     @Column(name = "id")
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "tutorId")
-    private Integer tutorId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User tutor;
 
     @Column(name = "category")
     private String category;
@@ -28,12 +42,12 @@ public class Course {
         this.id = id;
     }
 
-    public Integer getTutorId() {
-        return tutorId;
+    public User getTutor() {
+        return tutor;
     }
 
-    public void setTutorId(Integer tutorId) {
-        this.tutorId = tutorId;
+    public void setTutor(User tutor) {
+        this.tutor = tutor;
     }
 
     public String getCategory() {

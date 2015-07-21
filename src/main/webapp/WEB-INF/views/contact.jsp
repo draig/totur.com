@@ -59,7 +59,6 @@
             <th>id</th>
 			<th><spring:message code="label.category" /></th>
 			<th><spring:message code="label.subject" /></th>
-			<th>tutorId</th>
 			<th>&nbsp;</th>
 		</tr>
 		<c:forEach items="${courseList}" var="course">
@@ -67,7 +66,6 @@
                 <td>${course.id}</td>
 				<td>${course.category}</td>
 				<td>${course.subject}</td>
-				<td>${course.tutorId}</td>
 				<td><a href="delete/${course.id}"><spring:message code="label.delete" /></a></td>
 			</tr>
 		</c:forEach>

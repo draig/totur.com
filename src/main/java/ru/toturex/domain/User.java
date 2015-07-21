@@ -36,6 +36,9 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tutor")
+    private Set<Course> courses = new HashSet<Course>(0);
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
@@ -128,6 +131,14 @@ public class User {
 
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 
     public void addUserRole(String authority) {
