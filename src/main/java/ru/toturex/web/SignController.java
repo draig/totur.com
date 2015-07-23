@@ -1,6 +1,5 @@
 package ru.toturex.web;
 
-import com.sun.javafx.collections.UnmodifiableListSet;
 import org.springframework.ui.Model;
 import ru.toturex.domain.Course;
 
