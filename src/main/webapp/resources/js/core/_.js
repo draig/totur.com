@@ -1,0 +1,1 @@
+TotuRex.core = TotuRex.core || {};

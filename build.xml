@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="UniPro UI resources build" basedir="." default="build">
+
+    <property environment="env"/>
+
+    <property name="source.js.dir" value="${basedir}/src/main/webapp/resources/js"/>
+    <property name="output.js.dir" value="${basedir}/src/main/webapp/resources/js"/>
+
+    <condition property="m2.repo.dir" value="${env.M2_REPO}" else="${env.USERPROFILE}/.m2/repository">
+        <isset property="env.M2_REPO"/>
+    </condition>
+
+    <property name="yuicompressor.jar.location" value="${m2.repo.dir}/com/yahoo/platform/yui/yuicompressor/2.4.7/yuicompressor-2.4.7.jar"/>
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${m2.repo.dir}/ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar"/>
+            <pathelement location="${m2.repo.dir}/ant/ant-jakarta-regexp/1.6.1/ant-jakarta-regexp-1.6.1.jar"/>
+            <pathelement location="${m2.repo.dir}/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.jar"/>
+        </classpath>
+    </taskdef>
+
+    <property name="ant.regexp.regexpimpl" value="org.apache.tools.ant.util.regexp.JakartaRegexpRegexp"/>
+
+    <target name="build">
+
+        <echo message="Building 'unipro-ui.js'"/>
+        <concat destfile="${output.js.dir}/toturex.js"
+                fixlastline="true">
+            <fileset dir="${source.js.dir}">
+                <include>*.js</include>
+            </fileset>
+        </concat>
+
+
+    </target>
+
+</project>

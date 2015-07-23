@@ -1,0 +1,1 @@
+TotuRex.core.cmp = TotuRex.core.cmp || {};
