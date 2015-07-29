@@ -1,1 +1,0 @@
-window.TotuRex = window.TotuRex || {};
