@@ -3,7 +3,7 @@ define([
     'jquery',     // lib/jquery/jquery
     'underscore', // lib/underscore/underscore
     'backbone'    // lib/backbone/backbone
-], function($, _, Backbone){
+], function($, _, Backbone, SearchPanel){
 
     var Viewport = Backbone.View.extend({
 
@@ -30,6 +30,8 @@ define([
             this.$input = this.$('#new-todo');
             this.$footer = this.$('#footer');
             this.$main = this.$('#main');
+
+            this.searchPanel = new SearchPanel;
 
             this.listenTo(app.Todos, 'add', this.addOne);
             this.listenTo(app.Todos, 'reset', this.addAll);
