@@ -20,13 +20,18 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping("/index")
+    @RequestMapping("/course")
     public String listCourses(Map<String, Object> map) {
 
         map.put("course", new Course());
         map.put("courseList", courseService.listCourse());
 
-        return "contact";
+        return "redirect:/";
+    }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 
     @RequestMapping("/newcourse")
@@ -41,7 +46,7 @@ public class CourseController {
 
     @RequestMapping("/")
     public String home() {
-        return "redirect:/index";
+        return "index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

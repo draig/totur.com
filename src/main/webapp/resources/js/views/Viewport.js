@@ -2,31 +2,36 @@ define([
     // These are path alias that we configured in our bootstrap
     'jquery',     // lib/jquery/jquery
     'underscore', // lib/underscore/underscore
-    'backbone'    // lib/backbone/backbone
+    'backbone',   // lib/backbone/backbone
+    'views/panels/tutorSearch'
 ], function($, _, Backbone, SearchPanel){
 
     var Viewport = Backbone.View.extend({
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
-        el: '#todoapp',
+        el: '.body',
+
+        cmp: {},
 
         // Our template for the line of statistics at the bottom of the app.
-        statsTemplate: _.template( $('#stats-template').html() ),
+        /*statsTemplate: _.template( $('#stats-template').html() ),*/
 
         // New
         // Delegated events for creating new items, and clearing completed ones.
-        events: {
+        /*events: {
             'keypress #new-todo': 'createOnEnter',
             'click #clear-completed': 'clearCompleted',
             'click #toggle-all': 'toggleAllComplete'
-        },
+        },*/
 
         // At initialization we bind to the relevant events on the `Todos`
         // collection, when items are added or changed. Kick things off by
         // loading any preexisting todos that might be saved in *localStorage*.
         initialize: function() {
-            this.allCheckbox = this.$('#toggle-all')[0];
+
+            this.cmp.searchPanel = new SearchPanel();
+           /* this.allCheckbox = this.$('#toggle-all')[0];
             this.$input = this.$('#new-todo');
             this.$footer = this.$('#footer');
             this.$main = this.$('#main');
@@ -41,14 +46,19 @@ define([
             this.listenTo(app.Todos,'filter', this.filterAll);
             this.listenTo(app.Todos, 'all', this.render);
 
-            app.Todos.fetch();
+            app.Todos.fetch();*/
         },
 
         // New
         // Re-rendering the App just means refreshing the statistics -- the rest
         // of the app doesn't change.
         render: function() {
-            var completed = app.Todos.completed().length;
+            this.cmp.searchPanel.render();
+            
+            this.listenTo(this.cmp.searchPanel, 'search', function(searchCfg) {
+                history.pushState(null, null, 'search');
+            });
+            /*var completed = app.Todos.completed().length;
             var remaining = app.Todos.remaining().length;
 
             if ( app.Todos.length ) {
@@ -69,7 +79,7 @@ define([
                 this.$footer.hide();
             }
 
-            this.allCheckbox.checked = !remaining;
+            this.allCheckbox.checked = !remaining;*/
         },
 
         // Add a single todo item to the list by creating a view for it, and
