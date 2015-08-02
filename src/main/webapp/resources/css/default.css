@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+.side-panel {
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+.tutors {
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+/*panel*/
+.panel-header {
+    background-color: #72808a;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+}
+
+.panel-header-label {
+    padding: 7px 0 7px 10px;
+}
+/*end*/
+
+.search-panel {
+    background-color: #f1f1f1;
+}
+
+.search-panel .panel-body {
+    padding: 15px 15px 0;
+}
+
+/*select*/
+.select {
+    padding-bottom: 15px;
+}
+.select label {
+    font-size: 18px;
+    font-family: 'Arial Black', fantasy;
+    font-style: normal;
+    color: #5d686f;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.select select {
+    display: block;
+    width: 100%;
+}
+/*end*/
+
+/*button*/
+.btn {
+    background: #edeeee;
+    border: 1px solid #9ea8ae;
+    color: #5d686f;
+    text-shadow: none;
+    background-image: none;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-style: normal;
+    padding: 1px 10px 0 10px;
+    height: 28px;
+    line-height: 16px;
+    border-radius: 0;
+    font-family: 'Arial Black', fantasy;
+}
+/*end*/

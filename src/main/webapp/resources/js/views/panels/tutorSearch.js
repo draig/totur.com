@@ -2,10 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    // Using the Require.js text! plugin, we are loaded raw text
-    // which will be used as our views primary template
-    //'text!templates/project/list.html'
-], function($, _, Backbone/*, projectListTemplate*/){
+    'views/core/Select'
+], function($, _, Backbone, Select){
     var CATEGORYS = {
         ct: {
             title: 'ЦТ',
@@ -22,47 +20,81 @@ define([
             }
         }
     };
+
+    var CITY = {
+        minsk: 'Минск',
+        gomel: 'Гомель'
+    };
+
     var ProjectListView = Backbone.View.extend({
+
+        className: 'search-panel',
+
         el: $('.tutor-board .side-panel'),
+
         template: _.template(
-            '<div class="panel-header">Search result</div>' +
+            '<div class="panel-header">' +
+                '<div class="panel-header-label">Search result</div>' +
+            '</div>' +
             '<div class="panel-body">' +
-                '<label for="category">Category</label>' +
-                '<select class="t-search-category" name="category">' +
-                    '<option selected style="display: none"></option>' +
-                '</select>' +
-                '<label for="subject">Subject</label>' +
-                '<select class="t-search-subject" name="subject"></select>' +
-                '<button class="t-search-btn">Search</button>' +
+                '<button id="start-search" class="btn">Search</button>' +
             '</div>'),
+
+        initialize: function() {
+            this.city = new Select({
+                id: 'city-select',
+                label: 'city'
+            });
+            this.category = new Select({
+                id: 'category-select',
+                label: 'category'
+            });
+            this.subject = new Select({
+                id: 'subject-select',
+                label: 'subject'
+            })
+        },
+
         render: function(){
             var option;
             // Append our compiled template to this Views "el"
             this.$el.html(this.template({}));
-            this.$category = this.$el.find('.t-search-category');
-            this.$subject = this.$el.find('.t-search-subject');
-            this.$search = this.$el.find('.t-search-btn');
-            for(option in CATEGORYS) {
-                this.$category.append('<option value="' + option + '">' + CATEGORYS[option].title + '</option>');
+            this.$el.addClass(this.className);
+
+            this.city.render();
+            this.category.render();
+            this.subject.render();
+
+            for(option in CITY) {
+                this.city.addOption(option, CITY[option]);
             }
-            this.$subject.hide();
 
-            this.$category.on('change', function() {
-                this.$subject.empty();
-                this.$subject.append('<option selected style="display: none"></option>');
-                var subjects = CATEGORYS[this.$category.val()].subjects;
-                for(option in subjects) {
-                    this.$subject.append('<option value="' + option + '">' + subjects[option] + '</option>');
+            for(option in CATEGORYS) {
+                this.category.addOption(option, CATEGORYS[option].title);
+            }
+
+            this.category.on('change', function(value) {
+                if (value) {
+                    this.subject.clear();
+
+                    var subjects = CATEGORYS[value].subjects;
+                    for(option in subjects) {
+                        this.subject.addOption(option, subjects[option]);
+                    }
+                    this.subject.disable(false);
                 }
-                this.$subject.show();
             }.bind(this));
 
-            this.$subject.on('change', function() {
-            }.bind(this));
 
-            this.$search.on('click', function() {
+            this.subject.prependTo(this.$el.find(".panel-body"));
+            this.category.prependTo(this.$el.find(".panel-body"));
+            this.city.prependTo(this.$el.find(".panel-body"));
+
+            this.subject.disable(true);
+
+            /*this.$search.on('click', function() {
                 this.trigger('search', this.getSearchCfg());
-            }.bind(this));
+            }.bind(this));*/
 
 
         },
