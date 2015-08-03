@@ -16,7 +16,7 @@
 
     </div>
 
-    <div class="tutors">
+    <div class="content-panel">
 
     </div>
 

@@ -13,12 +13,12 @@ define([
     var Ad = Backbone.Model.extend({
         defaults: {
             available: true,
-            name: '',
-            photo: 'resources/img/noavatar.png',
+            name: 'Cидорчук Валентина Николаевна',
+            photo: 'resources/img/no-avatar.png',
             category: '',
             subject: '',
-            phone: '',
-            address: '',
+            phone: '+375447604989',
+            address: 'г.Минск, ул. Окрябрьская 10, д. 15',
             type: TYPE.BASIC
         }
     });

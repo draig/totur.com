@@ -30,7 +30,7 @@ define([
 
         className: 'search-panel',
 
-        el: $('.tutor-board .side-panel'),
+        el: '.tutor-board .side-panel',
 
         template: _.template(
             '<div class="panel-header">' +

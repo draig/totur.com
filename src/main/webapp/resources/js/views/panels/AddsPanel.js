@@ -8,15 +8,14 @@ define([
 
     var AddsPanel = Backbone.View.extend({
 
+        el: '.tutor-board .content-panel',
+
         className: 'adds-panel',
 
         searchUrl: 'restapi/ad/search',
 
-        $el: $('.tutor-board .content-panel'),
-
         template: _.template(
-                '<div class="filter-panel">' +
-                '</div>' +
+                '<div class="filter-panel"></div>' +
                 '<div class="adds-list"></div>'),
 
         initialize: function() {
@@ -25,15 +24,16 @@ define([
         },
 
         render: function(){
+            this.$el.html(this.template({}));
             this.$addsList = this.$el.find('.adds-list');
         },
 
         search: function() {
             this.ads.fetch({
-                data: $.param({ page: 1},{reset: true}),
-                url: this.searchUrl
-            },
-            {reset: true});
+                data: $.param({ page: 1}),
+                url: this.searchUrl,
+                reset: true
+            });
         },
 
         resetAds: function() {

@@ -11,20 +11,25 @@ define([
         image: '',
 
         template: _.template(
-                '<div class="tutor-img">' +
-                    '<img src="<%= image %>">' +
+                '<div class="photo">' +
+                    '<img src="<%= photo %>">' +
                 '</div>'+
-                '<div class="tutor-name"></div>' +
-                '<div class="tutor-category"><%= model.category %></div>' +
-                '<div class="tutor-subject"><%= model.subject %></div>'),
+                '<div class="tutor-name"><%= name %></div>' +
+                '<div class="tutor-category"><%= category %></div>' +
+                '<div class="tutor-subject"><%= subject %></div>'),
 
         initialize: function(option) {
 
         },
 
         render: function() {
-            this.$el.html(this.template(this));
+            var renderData = this.getModelData();
+            this.$el.html(this.template(renderData));
             return this;
+        },
+
+        getModelData: function() {
+            return _.clone(this.model.attributes);
         }
     });
 

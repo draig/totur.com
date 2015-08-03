@@ -1,24 +1,16 @@
 package ru.toturex.web;
 
-import com.sun.javafx.collections.UnmodifiableListSet;
-import org.springframework.ui.Model;
-import ru.toturex.domain.Course;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.toturex.domain.RegData;
 import ru.toturex.domain.User;
-import ru.toturex.domain.UserRole;
-import ru.toturex.service.CourseService;
 import ru.toturex.service.UserService;
 import ru.toturex.service.user.NewUserValidatorService;
-
-import java.util.Map;
 
 
 @Controller

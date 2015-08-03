@@ -17,7 +17,7 @@ html, body {
     float: left;
 }
 
-.tutors {
+.content-panel {
     width: 75%;
     height: 100%;
     float: left;
@@ -85,3 +85,17 @@ html, body {
     font-family: 'Arial Black', fantasy;
 }
 /*end*/
+
+/*Ad*/
+.tutor-ad .photo img {
+    border-radius: 9999px;
+}
+
+.tutor-ad {
+    overflow: hidden;
+}
+
+.tutor-ad *{
+    display: inline-block;
+    float: left;
+}
