@@ -15,6 +15,7 @@ html, body {
     width: 25%;
     height: 100%;
     float: left;
+    box-shadow: 0 0 21px rgba(41, 41, 41, 0.63)
 }
 
 .content-panel {
@@ -93,9 +94,21 @@ html, body {
 
 .tutor-ad {
     overflow: hidden;
+    background-color: #ebe7e7;
+    box-shadow: 0 0 4px rgba(41, 41, 41, 0.63);
+    margin-bottom: 10px;
 }
 
 .tutor-ad *{
     display: inline-block;
     float: left;
+}
+
+.ad-body {
+    padding: 9px 15px;
+}
+/*end*/
+
+.adds-list {
+    padding: 10px 30px 0;
 }

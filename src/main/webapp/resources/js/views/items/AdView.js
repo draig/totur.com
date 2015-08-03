@@ -11,12 +11,14 @@ define([
         image: '',
 
         template: _.template(
-                '<div class="photo">' +
-                    '<img src="<%= photo %>">' +
-                '</div>'+
-                '<div class="tutor-name"><%= name %></div>' +
-                '<div class="tutor-category"><%= category %></div>' +
-                '<div class="tutor-subject"><%= subject %></div>'),
+                '<div class="ad-body">' +
+                    '<div class="photo">' +
+                        '<img src="<%= photo %>">' +
+                    '</div>'+
+                    '<div class="tutor-name"><%= name %></div>' +
+                    '<div class="tutor-category"><%= category %></div>' +
+                    '<div class="tutor-subject"><%= subject %></div>' +
+                '</div>'),
 
         initialize: function(option) {
 
