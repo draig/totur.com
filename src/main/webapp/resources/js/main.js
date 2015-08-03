@@ -4,9 +4,9 @@
 // There usage will become more apparent further along in the tutorial.
 require.config({
     paths: {
-        jquery: '/resources/js/libs/jquery',
-        underscore: '/resources/js/libs/underscore',
-        backbone: '/resources/js/libs/backbone'
+        jquery: 'libs/jquery',
+        underscore: 'libs/underscore',
+        backbone: 'libs/backbone'
     }
 
 });

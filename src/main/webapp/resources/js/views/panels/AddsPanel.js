@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'collections/Ads',
-    'view/items/Ad'
+    'views/items/AdView'
 ], function($, _, Backbone, Ads, AdView){
 
     var AddsPanel = Backbone.View.extend({
@@ -12,7 +12,7 @@ define([
 
         searchUrl: 'restapi/ad/search',
 
-        el: $('.tutor-board .content-panel'),
+        $el: $('.tutor-board .content-panel'),
 
         template: _.template(
                 '<div class="filter-panel">' +
@@ -30,9 +30,10 @@ define([
 
         search: function() {
             this.ads.fetch({
-                data: $.param({ page: 1}),
+                data: $.param({ page: 1},{reset: true}),
                 url: this.searchUrl
-            });
+            },
+            {reset: true});
         },
 
         resetAds: function() {

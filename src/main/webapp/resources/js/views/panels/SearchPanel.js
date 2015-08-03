@@ -26,7 +26,7 @@ define([
         gomel: 'Гомель'
     };
 
-    var ProjectListView = Backbone.View.extend({
+    var SearchPanel = Backbone.View.extend({
 
         className: 'search-panel',
 
@@ -65,6 +65,8 @@ define([
             this.category.render();
             this.subject.render();
 
+            this.$startSearchBtn = this.$el.find('#start-search');
+
             for(option in CITY) {
                 this.city.addOption(option, CITY[option]);
             }
@@ -92,20 +94,20 @@ define([
 
             this.subject.disable(true);
 
-            /*this.$search.on('click', function() {
+            this.$startSearchBtn.on('click', function() {
                 this.trigger('search', this.getSearchCfg());
-            }.bind(this));*/
+            }.bind(this));
 
 
         },
 
         getSearchCfg: function() {
             var cfg = {};
-            cfg.category = this.$category.val();
-            cfg.subject = this.$subject.val();
+            /*cfg.category = this.category.val();
+            cfg.subject = this.subject.val();*/
             return cfg;
         }
     });
     // Our module now returns our view
-    return ProjectListView;
+    return SearchPanel;
 });

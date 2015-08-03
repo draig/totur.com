@@ -1,7 +1,8 @@
 package ru.toturex.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.*;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class Course {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User tutor;
 
     @Column(name = "category")

@@ -3,8 +3,9 @@ define([
     'jquery',     // lib/jquery/jquery
     'underscore', // lib/underscore/underscore
     'backbone',   // lib/backbone/backbone
-    'views/panels/tutorSearch'
-], function($, _, Backbone, SearchPanel){
+    'views/panels/SearchPanel',
+    'views/panels/AddsPanel'
+], function($, _, Backbone, SearchPanel, AddsPanel){
 
     var Viewport = Backbone.View.extend({
 
@@ -31,6 +32,7 @@ define([
         initialize: function() {
 
             this.cmp.searchPanel = new SearchPanel();
+            this.cmp.addsPanel = new AddsPanel();
            /* this.allCheckbox = this.$('#toggle-all')[0];
             this.$input = this.$('#new-todo');
             this.$footer = this.$('#footer');
@@ -51,6 +53,7 @@ define([
 
         render: function() {
             this.cmp.searchPanel.render();
+            this.cmp.addsPanel.render();
             
             this.listenTo(this.cmp.searchPanel, 'search', function(props) {
                 this.search(props)
@@ -58,9 +61,7 @@ define([
         },
 
         search: function(props) {
-            this.trigger('searchStart');
-
-            this.trigger('searchFinish');
+            this.cmp.addsPanel.search(props);
         }
     });
     return Viewport;

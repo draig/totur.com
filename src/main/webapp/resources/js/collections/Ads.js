@@ -5,7 +5,7 @@ define([
 ], function(_, Backbone, Ad){
 
     var Ads = Backbone.Collection.extend({
-        model: Ad,
-        url: '/restapi/search'
+        model: Ad
     });
+    return Ads;
 });

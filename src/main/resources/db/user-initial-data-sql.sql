@@ -9,3 +9,6 @@ INSERT INTO `users` (`user_id`, `email`, `enabled`, `firstname`, `password`, `su
 VALUES (2, NULL, TRUE, NULL, 'user', NULL, NULL, NULL, 'user');
 
 INSERT INTO `roles` (`role_id`, `role_name`, `user_user_id`) VALUES (3, 'ROLE_USER', '2');
+
+INSERT INTO `courses` (`id`, `category`, `subject`, `tutor_user_id`) VALUES (NULL, 'school', 'history', '1');
+INSERT INTO `courses` (`id`, `category`, `subject`, `tutor_user_id`) VALUES (NULL, 'exam', 'math', '1');
