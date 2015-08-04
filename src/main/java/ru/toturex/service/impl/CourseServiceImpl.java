@@ -12,6 +12,7 @@ import ru.toturex.domain.User;
 import ru.toturex.service.CourseService;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -45,6 +46,11 @@ public class CourseServiceImpl implements CourseService {
     @Transactional
     public List<Course> listCourse() {
         return courseDAO.listCourse();
+    }
+
+    @Transactional
+    public List<Course> listCourse(Map<String, String> conditions) {
+        return courseDAO.listCourse(conditions);
     }
 
     @Transactional

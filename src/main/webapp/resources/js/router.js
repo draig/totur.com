@@ -9,10 +9,13 @@ define([
         routes: {
             // Define some URL routes
             '/search': 'search',
-            '/users': 'showUsers',
+            '/course/:id': 'course',
 
             // Default
             '*actions': 'defaultAction'
+        },
+        course: function(id) {
+            console.log(id);
         }
     });
 

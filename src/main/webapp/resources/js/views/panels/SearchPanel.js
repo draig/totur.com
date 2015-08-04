@@ -103,8 +103,9 @@ define([
 
         getSearchCfg: function() {
             var cfg = {};
-            /*cfg.category = this.category.val();
-            cfg.subject = this.subject.val();*/
+            this.city.val() && (cfg.city = this.city.val());
+            this.category.val() && (cfg.category = this.category.val());
+            this.subject.val() && (cfg.subject = this.subject.val());
             return cfg;
         }
     });

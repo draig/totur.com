@@ -79,6 +79,10 @@ define([
 
         disable: function(disabled) {
             this.$field.attr('disabled', disabled ? 'disabled' : null);
+        },
+
+        val: function() {
+            return this.$field.val();
         }
     });
 

@@ -24,7 +24,7 @@ public class RestapiController {
     @RequestMapping(value = "/ad/search", method = RequestMethod.GET)
     public @ResponseBody
     List<Course> search (@RequestParam Map<String,String> allRequestParams, Model model) {
-        List<Course> course = courseService.listCourse();
+        List<Course> course = courseService.listCourse(allRequestParams);
         return course;
     }
 }

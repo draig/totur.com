@@ -10,5 +10,5 @@ VALUES (2, NULL, TRUE, NULL, 'user', NULL, NULL, NULL, 'user');
 
 INSERT INTO `roles` (`role_id`, `role_name`, `user_user_id`) VALUES (3, 'ROLE_USER', '2');
 
-INSERT INTO `courses` (`id`, `category`, `subject`, `tutor_user_id`) VALUES (NULL, 'school', 'history', '1');
-INSERT INTO `courses` (`id`, `category`, `subject`, `tutor_user_id`) VALUES (NULL, 'exam', 'math', '1');
+INSERT INTO `courses` (`id`, `category`, `subject`, `city`, `tutor_user_id`) VALUES (NULL, 'school', 'history', 'gomel', '1');
+INSERT INTO `courses` (`id`, `category`, `subject`, `city`, `tutor_user_id`) VALUES (NULL, 'exam', 'math', 'minsk', '1');

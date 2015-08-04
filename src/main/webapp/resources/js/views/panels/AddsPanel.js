@@ -28,9 +28,9 @@ define([
             this.$addsList = this.$el.find('.adds-list');
         },
 
-        search: function() {
+        search: function(props) {
             this.ads.fetch({
-                data: $.param({ page: 1}),
+                data: $.param(props),
                 url: this.searchUrl,
                 reset: true
             });
