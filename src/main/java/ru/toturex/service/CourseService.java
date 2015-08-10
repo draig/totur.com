@@ -18,4 +18,6 @@ public interface CourseService {
     public List<Course> listCourse(Map<String, String> conditions);
 
     public void removeCourse(Integer id);
+
+    public Course getCourse(Integer id);
 }

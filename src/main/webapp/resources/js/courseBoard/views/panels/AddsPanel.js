@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/Ads',
-    'views/items/AdView'
+    'courseBoard/collections/Ads',
+    'courseBoard/views/items/AdView'
 ], function($, _, Backbone, Ads, AdView){
 
     var AddsPanel = Backbone.View.extend({
@@ -12,7 +12,7 @@ define([
 
         className: 'adds-panel',
 
-        searchUrl: 'restapi/ad/search',
+        searchUrl: 'rest-api/ad/search',
 
         template: _.template(
                 '<div class="filter-panel"></div>' +

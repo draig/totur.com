@@ -1,7 +1,7 @@
 define([
     'underscore',
     'backbone',
-    'models/Ad'
+    'courseBoard/models/Ad'
 ], function(_, Backbone, Ad){
 
     var Ads = Backbone.Collection.extend({

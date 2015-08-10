@@ -1,7 +1,7 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'backbone'
 ], function($, _, Backbone){
 
     var Select = Backbone.View.extend({

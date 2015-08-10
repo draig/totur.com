@@ -4,6 +4,10 @@ html, body {
     padding: 0;
 }
 
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .app-page {
     width: 100%;
     height: 100%;
@@ -125,4 +129,48 @@ html, body {
 
 .adds-list {
     padding: 10px 30px 0;
+}
+
+/*courseDetail*/
+.course-details .backward {
+    width: 30px;
+    height: 100%;
+    float: left;
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+.course-details .backward > span {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -8px;
+    font-weight: bold;
+    font-family: 'Arial Black', fantasy;
+}
+
+.course-details-panel {
+    left: 30px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding: 0 40px;
+}
+
+.course .detail {
+    border-bottom: 3px solid #f1f1f1;
+    margin-bottom: 7px;
+}
+
+.course .detail .label {
+    font-size: 18px;
+    font-family: 'Arial Black', fantasy;
+    font-style: normal;
+    color: #5d686f;
+    text-transform: capitalize;
+    font-weight: normal;
+    width: 200px;
+    display: inline-block;
 }

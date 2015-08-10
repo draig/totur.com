@@ -1,7 +1,7 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'backbone'
 ], function($, _, Backbone){
 
     var AdView = Backbone.View.extend({
@@ -10,7 +10,7 @@ define([
 
         image: '',
 
-        openUrl: _.template('course/<%= id =>'),
+        openUrl: _.template('course/<%= id %>'),
 
         events: {
             'click .tutor-ad': 'open'
@@ -44,7 +44,7 @@ define([
         },
 
         open: function() {
-            this.navigate(this.openUrl(this), {trigger: true});
+            Backbone.history.navigate(this.openUrl(this.getModelData()), {trigger: true});
         }
     });
 

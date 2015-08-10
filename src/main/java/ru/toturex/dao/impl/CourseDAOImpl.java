@@ -48,4 +48,17 @@ public class CourseDAOImpl implements CourseDAO {
             sessionFactory.getCurrentSession().delete(course);
         }
     }
+
+    public Course getCourse(Integer id) {
+        List<Course> courses = sessionFactory.getCurrentSession()
+                .createQuery("FROM ru.toturex.domain.Course WHERE id = :id")
+                .setParameter("id", id)
+                .list();
+
+        if (courses.size() > 0) {
+            return courses.get(0);
+        } else {
+            return null;
+        }
+    }
 }

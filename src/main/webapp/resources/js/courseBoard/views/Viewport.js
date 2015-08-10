@@ -3,15 +3,16 @@ define([
     'jquery',     // lib/jquery/jquery
     'underscore', // lib/underscore/underscore
     'backbone',   // lib/backbone/backbone
-    'views/panels/SearchPanel',
-    'views/panels/AddsPanel'
-], function($, _, Backbone, SearchPanel, AddsPanel){
+    'core/views/Viewport',
+    'courseBoard/views/panels/SearchPanel',
+    'courseBoard/views/panels/AddsPanel'
+], function($, _, Backbone, Viewport, SearchPanel, AddsPanel){
 
-    var Viewport = Backbone.View.extend({
+    var courseBoard = Viewport.extend({
 
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
-        el: '.body',
+        el: '.tutor-board',
 
         cmp: {},
 
@@ -52,9 +53,8 @@ define([
         },
 
         render: function() {
-            this.cmp.searchPanel.render();
-            this.cmp.addsPanel.render();
-            
+            Viewport.prototype.render.apply(this, arguments);
+
             this.listenTo(this.cmp.searchPanel, 'search', function(props) {
                 this.search(props)
             });
@@ -64,5 +64,5 @@ define([
             this.cmp.addsPanel.search(props);
         }
     });
-    return Viewport;
+    return courseBoard;
 });

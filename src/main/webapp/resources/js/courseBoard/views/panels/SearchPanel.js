@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/core/Select'
+    'core/views/Select'
 ], function($, _, Backbone, Select){
     var CATEGORYS = {
         ct: {

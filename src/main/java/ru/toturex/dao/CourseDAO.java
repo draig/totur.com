@@ -13,4 +13,6 @@ public interface CourseDAO {
     public List<Course> listCourse(Map<String, String> conditions);
 
     public void removeCourse(Integer id);
+
+    public Course getCourse(Integer id);
 }

@@ -57,4 +57,9 @@ public class CourseServiceImpl implements CourseService {
     public void removeCourse(Integer id) {
         courseDAO.removeCourse(id);
     }
+
+    @Transactional
+    public Course getCourse(Integer id) {
+        return courseDAO.getCourse(id);
+    }
 }

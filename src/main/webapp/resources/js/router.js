@@ -3,40 +3,44 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/Viewport',
-], function($, _, Backbone, Viewport){
+    'courseBoard/views/Viewport',
+    'courseDetail/views/Viewport'
+], function($, _, Backbone, CourseBoard, CourseDetail){
     var AppRouter = Backbone.Router.extend({
         routes: {
-            // Define some URL routes
-            '/search': 'search',
-            '/course/:id': 'course',
-
-            // Default
-            '*actions': 'defaultAction'
-        },
-        course: function(id) {
-            console.log(id);
+            'course-board': 'course-board',
+            'course/:id': 'course-details',
+            '': 'defaultPage'
         }
     });
 
-    var initialize = function(){
-        var app_router = new AppRouter;
-        app_router.on('search', function(){
-            // Call render on the module we loaded in via the dependency array
-            // 'views/projects/list'
-            /*var viewport = new Viewport();
-             viewport.render();*/
-            console.log('search');
-        });
-        app_router.on('defaultAction', function(actions){
-            // We have no matching route, lets just log what the URL was
-            console.log('No route:', actions);
-        });
+    var viewport;
 
-        var viewport = new Viewport();
+    function showViewport(viewportClass, options){
+        viewport && viewport.hide();
+        viewport = new viewportClass(options||{});
         viewport.render();
+        viewport.show();
+    };
 
-        Backbone.history.start();
+    var initialize = function(){
+        var app_router = new AppRouter, viewport;
+        app_router.on('route:course-board', function(){
+            showViewport(CourseBoard);
+        });
+        app_router.on('route:course-details', function(id){
+            console.log('route:course-details ' + id);
+            showViewport(CourseDetail, {courseId: id});
+        });
+        app_router.on('route:defaultPage', function(){
+            Backbone.history.navigate('course-board', {trigger: true});
+        });
+
+
+
+        Backbone.history.start({
+            root: '/'
+        });
     };
     return {
         initialize: initialize
