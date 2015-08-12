@@ -1,10 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone){
+    'backbone',
+    'core/views/Component'
+], function($, _, Backbone, Component){
 
-    var Select = Backbone.View.extend({
+    var Select = Component.extend({
 
         selectOnStart: false,
 
@@ -60,25 +61,6 @@ define([
 
         prependTo: function(node) {
             this.$el.prependTo(node);
-        },
-
-        show: function() {
-            this.$el.show();
-        },
-
-        hide: function() {
-            this.$el.hide()
-        },
-
-        clear: function() {
-            this.$field.empty();
-            if(!this.selectOnStart){
-                this.$field.prepend(this.fakeOptionTemplate());
-            }
-        },
-
-        disable: function(disabled) {
-            this.$field.attr('disabled', disabled ? 'disabled' : null);
         },
 
         val: function() {

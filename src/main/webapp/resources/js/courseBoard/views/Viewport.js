@@ -10,6 +10,7 @@ define([
 
     var courseBoard = Viewport.extend({
 
+        viewport: 'courseBoard',
         // Instead of generating a new element, bind to the existing skeleton of
         // the App already present in the HTML.
         el: '.tutor-board',
