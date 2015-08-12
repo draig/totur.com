@@ -11,6 +11,8 @@ define([
 
         el: '.course-details',
 
+        pages: {},
+
         initialize: function(options) {
 
             this.cmp.courseDetailsPanel = new CourseDetailsPanel({
@@ -19,7 +21,7 @@ define([
 
             this.cmp.courseDetailsPanel.on('backward', function() {
                 console.log('backward');
-            })
+            });
         },
 
         render: function() {
