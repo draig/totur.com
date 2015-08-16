@@ -122,7 +122,7 @@
 
     </dependencies>
 
-    <build>
+    <!--<build>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -133,7 +133,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- yuicompressor-maven-plugin -->
+                &lt;!&ndash; yuicompressor-maven-plugin &ndash;&gt;
                 <plugin>
                     <groupId>net.alchim31.maven</groupId>
                     <artifactId>yuicompressor-maven-plugin</artifactId>
@@ -158,10 +158,10 @@
                             <aggregation>
                                 <insertNewLine>true</insertNewLine>
                                 <output>${project.build.directory}/${project.build.finalName}/resources/js/app.js</output>
-                                <!--<includes>
+                                &lt;!&ndash;<includes>
                                     <include>${basedir}/src/main/webapp/js/comments.txt</include>
                                     <include>${project.build.directory}/minified/js/def.js</include>
-                                </includes>-->
+                                </includes>&ndash;&gt;
                             </aggregation>
                         </aggregations>
                     </configuration>
@@ -177,6 +177,6 @@
                 </plugin>
 
             </plugins>
-    </build>
+    </build>-->
 
 </project>

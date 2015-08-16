@@ -4,65 +4,31 @@ define([
     'underscore', // lib/underscore/underscore
     'backbone',   // lib/backbone/backbone
     'core/views/Viewport',
-    'courseBoard/views/panels/SearchPanel',
-    'courseBoard/views/panels/AddsPanel'
-], function($, _, Backbone, Viewport, SearchPanel, AddsPanel){
+    'courseBoard/views/pages/CourseList',
+    'courseBoard/views/pages/CourseDetails'
+], function($, _, Backbone, Viewport, CourseList, CourseDetails){
 
     var courseBoard = Viewport.extend({
 
-        viewport: 'courseBoard',
-        // Instead of generating a new element, bind to the existing skeleton of
-        // the App already present in the HTML.
         el: '.tutor-board',
 
-        cmp: {},
-
-        // Our template for the line of statistics at the bottom of the app.
-        /*statsTemplate: _.template( $('#stats-template').html() ),*/
-
-        // New
-        // Delegated events for creating new items, and clearing completed ones.
-        /*events: {
-            'keypress #new-todo': 'createOnEnter',
-            'click #clear-completed': 'clearCompleted',
-            'click #toggle-all': 'toggleAllComplete'
-        },*/
-
-        // At initialization we bind to the relevant events on the `Todos`
-        // collection, when items are added or changed. Kick things off by
-        // loading any preexisting todos that might be saved in *localStorage*.
         initialize: function() {
-
-            this.cmp.searchPanel = new SearchPanel();
-            this.cmp.addsPanel = new AddsPanel();
-           /* this.allCheckbox = this.$('#toggle-all')[0];
-            this.$input = this.$('#new-todo');
-            this.$footer = this.$('#footer');
-            this.$main = this.$('#main');
-
-            this.searchPanel = new SearchPanel;
-
-            this.listenTo(app.Todos, 'add', this.addOne);
-            this.listenTo(app.Todos, 'reset', this.addAll);
-
-            // New
-            this.listenTo(app.Todos, 'change:completed', this.filterOne);
-            this.listenTo(app.Todos,'filter', this.filterAll);
-            this.listenTo(app.Todos, 'all', this.render);
-
-            app.Todos.fetch();*/
+            Viewport.prototype.initialize.apply(this, arguments);
+            this.cmp.courseList = new CourseList();
+            this.cmp.courseDetails = new CourseDetails();
         },
 
-        render: function() {
-            Viewport.prototype.render.apply(this, arguments);
-
-            this.listenTo(this.cmp.searchPanel, 'search', function(props) {
-                this.search(props)
-            });
-        },
-
-        search: function(props) {
-            this.cmp.addsPanel.search(props);
+        render: function(options) {
+            options = options || {};
+            if(options.page === 'course-details') {
+                this.cmp.courseDetails.render(options);
+                this.cmp.courseDetails.show();
+                this.cmp.courseList.hide();
+                return;
+            }
+            this.cmp.courseList.render(options);
+            this.cmp.courseList.show();
+            this.cmp.courseDetails.hide();
         }
     });
     return courseBoard;

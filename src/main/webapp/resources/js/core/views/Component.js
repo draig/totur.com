@@ -6,9 +6,28 @@ define([
 
     var Component = Backbone.View.extend({
 
-        cfg: {},
+        cfg: null,
 
         isRender: false,
+
+        lazyRender: false,
+
+        initialize: function(options) {
+            Backbone.View.prototype.initialize.apply(this, arguments);
+            this.cfg = options || {};
+            this.lazyRender = !!this.cfg.lazyRender;
+        },
+
+        render: function() {
+            this.isRender = true;
+            return this;
+        },
+
+        autoRender: function() {
+            if(!this.lazyRender) {
+                this.render.apply(this, arguments);
+            }
+        },
 
         appendTo: function(node) {
             this.$el.appendTo(node);
@@ -24,11 +43,6 @@ define([
 
         hide: function() {
             this.$el.hide()
-        },
-
-        render: function() {
-            this.isRender = true;
-            return this;
         },
 
         disable: function(disabled) {

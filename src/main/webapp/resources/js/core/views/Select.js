@@ -65,6 +65,11 @@ define([
 
         val: function() {
             return this.$field.val();
+        },
+
+        clear: function() {
+            this.$field.empty();
+            return this;
         }
     });
 
