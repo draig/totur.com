@@ -40,7 +40,7 @@ define([
             this.$addsList.empty();
             this.ads.each(this.addAd, this);
         },
-        
+
         addAd: function(ad) {
             var view = new AdView({
                 model: ad

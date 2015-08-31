@@ -141,9 +141,20 @@ public class User {
         this.courses = courses;
     }
 
+    public boolean isAuth() {
+        return id != null;
+    }
+
     public void addUserRole(String authority) {
         UserRole newUserRole = new UserRole(this, authority);
         this.userRole.add(newUserRole);
+    }
+
+    @Override
+    public String toString(){
+        return "id: " + getId() + "\n" +
+                "username: " + getUsername() + "\n" +
+                "isAuth: " + isAuth() + "\n";
     }
 
 }

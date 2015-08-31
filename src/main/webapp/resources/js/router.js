@@ -3,60 +3,58 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'courseBoard/views/Viewport'
-], function($, _, Backbone, CourseBoard){
+    'courseBoard/views/Viewport',
+    'header/views/Viewport'
+], function($, _, Backbone, CourseBoard, Header){
 
-    var AppRouter = Backbone.Router.extend({
+    var Router = Backbone.Router.extend({
         routes: {
-            'course-board': 'course-board',
-            'course/:id': 'course-details',
+            'course-board': 'courseBoard',
+            'course/:id': 'courseDetails',
             'backward': 'backward',
             '': 'defaultPage'
-        }
-    });
+        },
 
-    var viewport;
+        initialize: function() {
+            //_.bindAll(this);
+            this._courseBoardView = new CourseBoard();
+        },
 
-
-    function showViewport(newViewport, renderOptions){
-        viewport && viewport.hide();
-        viewport = newViewport;
-        viewport.render(renderOptions || {});
-        viewport.show();
-    };
-
-    var courseBoard = new CourseBoard();
-
-    var initialize = function(){
-        var app_router = new AppRouter, viewport;
-        app_router.on('route:course-board', function(){
-            showViewport(courseBoard, {
+        courseBoard: function() {
+            this.showViewport(this._courseBoardView, {
                 page: 'course-board'
             });
-        });
-        app_router.on('route:backward', function(){
-            showViewport(courseBoard, {
-                page: 'backward'
-            });
-        });
-        app_router.on('route:course-details', function(id){
+        },
+
+        courseDetails: function(id) {
             console.log('route:course-details ' + id);
-            showViewport(courseBoard, {
+            this.showViewport(this._courseBoardView, {
                 page: 'course-details',
                 courseId: id
             });
-        });
-        app_router.on('route:defaultPage', function(){
+        },
+
+        backward: function() {
+            this.showViewport(this._courseBoardView, {
+                page: 'backward'
+            });
+        },
+
+        defaultPage: function() {
             Backbone.history.navigate('course-board', {trigger: true});
-        });
+        },
 
+        showViewport: function(newViewport, renderOptions) {
+            if(!this.header){
+                this.header = new Header({});
+                this.header.render();
+            }
+            this.viewport && this.viewport.hide();
+            this.viewport = newViewport;
+            this.viewport.render(renderOptions || {});
+            this.viewport.show();
+        }
+    });
 
-
-        Backbone.history.start({
-            root: '/'
-        });
-    };
-    return {
-        initialize: initialize
-    };
+    return Router;
 });

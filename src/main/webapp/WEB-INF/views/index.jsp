@@ -4,11 +4,24 @@
 <head>
     <title>TotuRex</title>
     <link rel="stylesheet" href="resources/css/default.css">
+    <link rel="stylesheet" href="resources/css/dialog.css">
     <script data-main="resources/js/main" src="resources/js/libs/require.js"></script>
 </head>
 <body>
 
-<header></header>
+<header>
+        <div class="wrapper">
+            <div class="login-panel right-panel">
+                <div class="panel-horizontal-cell">
+                    <button class="sign-in-btn">Войти</button>
+                </div>
+                <div class="panel-horizontal-cell">
+                    <button class="sign-in-btn vk-btn">Вконтакте</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 
 <div class="app-page tutor-board" style="display: none">

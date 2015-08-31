@@ -9,9 +9,11 @@ body {
 }
 
 .app-page {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    bottom: 0;
+    top: 45px;
+    left: 0;
+    right: 0;
+    position: absolute;
 
 }
 
@@ -179,4 +181,69 @@ body {
     font-weight: normal;
     width: 200px;
     display: inline-block;
+}
+
+/*Header*/
+
+header{
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 36px;
+}
+
+header .wrapper{
+    width: 1050px;
+    height: 36px;
+    margin: auto;
+}
+
+.login-panel{
+    height: 100%;
+}
+
+.right-panel {
+    float: right;
+}
+.panel-horizontal-cell{
+    display: inline-block;
+    height: 100%;
+    border-left: 1px solid #444;
+}
+
+button.sign-in-btn {
+    margin: 3px 5px;
+    line-height: 26px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 21px;
+}
+
+button.sign-in-btn.vk-btn {
+    background-color: #4c81b7;
+    border-radius: 4px;
+    padding-left: 25px;
+    position: relative;
+}
+
+button.sign-in-btn.vk-btn:before {
+    content: 'B';
+    position: absolute;
+    left: 0;
+    padding: 0px 3px;
+    font-weight: bold;
+    border-right: solid 1px #444;
+}
+
+button.sign-in-btn.vk-btn:hover{
+    opacity: 1;
+}
+
+/*end*/
+
+/*auth dialog*/
+.social-network-panel, .auth-panel {
+    float: left;
+    width: 50%;
 }
